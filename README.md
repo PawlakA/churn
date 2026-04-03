@@ -120,8 +120,6 @@ python scripts/run_pipeline.py \
 
 The repository also includes a prediction pipeline for evaluating or generating predictions using a trained model.
 
-#### How to Run (from Terminal)
-
 ```bash
 python scripts/run_predict.py \
   --model_root ./src/serving/models \
