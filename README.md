@@ -35,7 +35,14 @@ Churn was defined as **customer inactivity over the last couple of months** (i.e
 
 ## Feature Engineering
 
-Several behavioral features were extracted to describe customer activity:
+Several behavioral features were extracted to describe customer activity.
+
+
+| CustomerID | Recency (days) | Frequency | Monetary | Returns | Multiple Purchases | Avg Days Between Purchases | Churn |
+| ---------- | -------------- | --------- | -------- | ------- | ------------------ |----------------------------| ----- |
+| 12345      | 12             | 5         | 350.75   | 1       | 1                  | 18.2                       | 0     |
+| 12346      | 95             | 1         | 89.00    | 0       | 0                  | 95.0                       | 1     |
+| 12347      | 30             | 3         | 220.40   | 0       | 1                  | 25.5                       | 0     |
 
 ### 1. RFM Features
 
@@ -54,13 +61,6 @@ Several behavioral features were extracted to describe customer activity:
 ### 4. Average Days Between Purchases
 
 * Average time gap (in days) between consecutive purchases.
-
-
-| CustomerID | Recency (days) | Frequency | Monetary | Returns | Multiple Purchases | Avg Days Between Purchases | Churn |
-| ---------- | -------------- | --------- | -------- | ------- | ------------------ |----------------------------| ----- |
-| 12345      | 12             | 5         | 350.75   | 1       | 1                  | 18.2                       | 0     |
-| 12346      | 95             | 1         | 89.00    | 0       | 0                  | 95.0                       | 1     |
-| 12347      | 30             | 3         | 220.40   | 0       | 1                  | 25.5                       | 0     |
 
 ## Modeling
 
