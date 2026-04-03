@@ -1,0 +1,17 @@
+# venvs
+.venv/
+venv/
+env/
+
+# OS cruft
+.DS_Store
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.ipnb_checkpoints
+
+mlruns/
+artifacts/
+iframe_figures/

@@ -1,0 +1,10 @@
+artifact_location: file:///home/agnieszka/PyCharmMiscProject/CLV/mlruns/706295626970612192/models/m-1ed936af9d1748ad9cef4e624c5951b2/artifacts
+creation_timestamp: 1774353710771
+experiment_id: '706295626970612192'
+last_updated_timestamp: 1774353713293
+model_id: m-1ed936af9d1748ad9cef4e624c5951b2
+model_type: null
+name: model
+source_run_id: 552cb1836fc746b69cd37c4e081df3cc
+status: 2
+status_message: null
