@@ -126,18 +126,56 @@ python scripts/run_predict.py \
   --experiment-name m-1ed936af9d1748ad9cef4e624c5951b2
 ````
 
-### Streamlit App
+## Running the App (Streamlit + FastAPI)
 
-* **src/app/streamlit_app.py**
+This project uses:
+- **FastAPI** as the backend API for predictions  
+- **Streamlit** as the frontend UI  
 
-  * Provides a user-friendly interface to input customer features
-  * Generates churn predictions using the trained model
+### 1. Start FastAPI backend
+
+From the project root directory, run:
+
+```bash
+uvicorn src.api.main:app --reload --port 8000
+````
+
+- API will be available at:  
+  http://localhost:8000  
+- Docs (Swagger UI):  
+  http://localhost:8000/docs  
+
+  
+### 2. Start Streamlit frontend
+
+Open a **new terminal** and run:
 
 ```bash
 streamlit run src/app/streamlit_app.py
-```
+````
 
-This will launch a local web application where you can interactively test the model.
+- App will open at:  
+  http://localhost:8501  
+
+
+### 3. How it works
+
+- Streamlit collects user input from the UI  
+- Sends a POST request to the FastAPI endpoint:
+
+POST http://localhost:8000/predict
+
+- FastAPI processes the data and returns a prediction  
+- Streamlit displays the result  
+
+---
+
+### ⚠️ Notes
+
+- Make sure **FastAPI is running before using Streamlit**
+- Both services must be running at the same time
+
+---
 
 ## Summary
 

@@ -1,13 +1,7 @@
 import streamlit as st
-import pandas as pd
-import mlflow.pyfunc
 import os
+import requests
 cwd = os.getcwd()
-print(cwd)
-
-# Load model
-model_file = os.path.join(cwd, 'src/serving/models/m-1ed936af9d1748ad9cef4e624c5951b2/artifacts')
-model = mlflow.pyfunc.load_model(model_file)
 
 # Page title with larger font
 st.markdown("<h1 style='text-align: center; font-size: 48px;'>Churn Prediction Demo</h1>", unsafe_allow_html=True)
@@ -27,21 +21,30 @@ with col2:
     feature6 = st.slider("Number of returns / cancellations", min_value=0, max_value=100, value=0)
 
 # Collect features into a pandas DataFrame
-data = pd.DataFrame({
-    "avg_days_between": [feature1],
-    "has_multiple_purchases": [feature2],
-    "Recency": [feature3],
-    "Frequency": [feature4],
-    "Monetary": [feature5],
-    "returns": [feature6]
-})
-
-# Predict button
+data = {
+    "avg_days_between": feature1,
+    "has_multiple_purchases": feature2,
+    "Recency": feature3,
+    "Frequency": feature4,
+    "Monetary": feature5,
+    "returns": feature6
+}
 if st.button("Predict"):
-    preds = model.predict(data)
-    result = int(preds.tolist()[0])
+    try:
+        # Call FastAPI predict endpoint
+        response = requests.post("http://localhost:8000/predict", json=data)
+        response.raise_for_status()  # Raise error if request failed
 
-    st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown("<h2 style='color: blue; font-size: 32px;'>Prediction Result</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size: 28px;'>"
-                f"{'⚠️ Likely to churn' if result == 1 else '✅ Not likely to churn'}</p>", unsafe_allow_html=True)
+        # Parse prediction
+        result = response.json().get("prediction")  # Expect API to return {"prediction": 0 or 1}
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: blue; font-size: 32px;'>Prediction Result</h2>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size: 28px;'>"
+                    f"{'⚠️ Likely to churn' if result == 1 else '✅ Not likely to churn'}</p>", unsafe_allow_html=True)
+
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error connecting to API: {e}")
+    except Exception as e:
+        st.error(f"Unexpected error: {e}")
+
