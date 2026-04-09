@@ -170,29 +170,30 @@ POST http://localhost:8000/predict
 - Streamlit displays the result  
 
 ---
-
-### ⚠️ Notes
-
-- Make sure **FastAPI is running before using Streamlit**
-- Both services must be running at the same time
-
+> ⚠️ **Note:**: Make sure **FastAPI is running before using Streamlit**, 
+> both services must be running at the same time
 ---
 
 ## 🐳 Docker
 
-### 1. Build docker image
-
-From the project root directory, run:
+### Build docker image locally
 
 ```bash
 docker build -t churn-demo .
-````
-
-### 2. Run the container
-
-```bash
 docker run -p 8000:8000 -p 8501:8501 churn-demo
 ````
+
+or
+
+### Run directly from **GitHub Container Registry**.
+
+```bash
+docker run -p 8000:8000 ghcr.io/pawlaka/churn-demo-v-1.0:latest
+````
+
+---
+> ⚠️ **Note:** On first run, the Docker image may take a few minutes to start.
+---
 
 ## 📝 Summary
 

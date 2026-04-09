@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Copy requirements first for caching
-COPY requirements_docker.txt .
+COPY requirements_api.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements_api.txt
