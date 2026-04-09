@@ -137,7 +137,8 @@ This project uses:
 From the project root directory, run:
 
 ```bash
-uvicorn src.api.main:app --reload --port 8000
+cd src/
+uvicorn app.main:app --reload --port 8000
 ````
 
 - API will be available at:  
@@ -151,7 +152,7 @@ uvicorn src.api.main:app --reload --port 8000
 Open a **new terminal** and run:
 
 ```bash
-streamlit run src/app/streamlit_app.py
+streamlit run app/streamlit_app.py
 ````
 
 - App will open at:  

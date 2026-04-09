@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from src.app.model.inference import predict
+from app.model.inference import predict
 
 # Initialize FastAPI application
 app = FastAPI(
@@ -32,7 +32,6 @@ class InputData(BaseModel):
 def get_prediction(data: InputData):
     """
     Main prediction endpoint for customer churn prediction.
-
     """
     try:
         # Convert Pydantic model to dict and call inference pipeline

@@ -1,9 +1,6 @@
 import os
 import pandas as pd
 import mlflow
-import argparse
-from pathlib import Path
-from pydantic import BaseModel, validator
 
 MODEL_DIR = "models"
 

@@ -10,7 +10,7 @@ env/
 __pycache__/
 *.py[cod]
 *.pyo
-.ipnb_checkpoints
+.ipynb_checkpoints
 
 mlruns/
 artifacts/
