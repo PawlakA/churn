@@ -1,13 +1,13 @@
 # Customer Churn Prediction
 
-## Overview
+## 🔍 Overview
 
 This project focuses on predicting customer churn using transactional data from an online retail business. The goal is to identify customers who are likely to stop purchasing, enabling proactive retention strategies.
 
 The dataset used in this project comes from the UCI Machine Learning Repository:
 [https://archive-beta.ics.uci.edu/dataset/502/online%2Bretail%2Bii?utm_source=chatgpt.com](https://archive-beta.ics.uci.edu/dataset/502/online%2Bretail%2Bii?utm_source=chatgpt.com)
 
-## Dataset Description
+## 📊 Dataset Description
 
 The dataset contains transactional records for an online retail store. Each row represents a single transaction line (an item within an invoice).
 
@@ -29,11 +29,11 @@ The dataset contains transactional records for an online retail store. Each row 
 | 536365    | 85123A    | WHITE HANGING HEART | 6        | 2010-12-01 08:26 | 2.55      | 17850      | UK      |
 | 536365    | 71053     | WHITE METAL LANTERN | 6        | 2010-12-01 08:26 | 3.39      | 17850      | UK      |
 
-## Data Processing
+## ⚙️ Data Processing
 
 Churn was defined as **customer inactivity over the last couple of months** (i.e., no purchases in a defined recent period).
 
-## Feature Engineering
+## 🧩 Feature Engineering
 
 Several behavioral features were extracted to describe customer activity.
 
@@ -62,7 +62,7 @@ Several behavioral features were extracted to describe customer activity.
 
 * Average time gap (in days) between consecutive purchases.
 
-## Modeling
+## 🧠 Modeling
 
 ### Algorithms Considered
 
@@ -78,7 +78,7 @@ Hyperparameter tuning was performed using **Optuna** combined with cross-validat
 
 The classification threshold was optimized with a focus on **recall**, as correctly identifying potentially churning customers is typically more important than overall accuracy in churn prediction scenarios.
 
-## Evaluation
+## 📈 Evaluation
 
 The model was evaluated using cross-validation, with particular attention to:
 
@@ -88,7 +88,7 @@ The model was evaluated using cross-validation, with particular attention to:
 
 Higher recall ensures that most at-risk customers are identified, even at the cost of some false positives.
 
-## Repository Structure
+## 📁 Repository Structure
 
 ### Notebooks
 
@@ -126,7 +126,7 @@ python scripts/run_predict.py \
   --experiment-name m-1ed936af9d1748ad9cef4e624c5951b2
 ````
 
-## Running the App (Streamlit + FastAPI)
+## ▶️ Running the App (Streamlit + FastAPI)
 
 This project uses:
 - **FastAPI** as the backend API for predictions  
@@ -178,7 +178,23 @@ POST http://localhost:8000/predict
 
 ---
 
-## Summary
+## 🐳 Docker
+
+### 1. Build docker image
+
+From the project root directory, run:
+
+```bash
+docker build -t churn-demo .
+````
+
+### 2. Run the container
+
+```bash
+docker run -p 8000:8000 -p 8501:8501 churn-demo
+````
+
+## 📝 Summary
 
 This project demonstrates a full pipeline for churn prediction:
 
