@@ -88,6 +88,28 @@ The model was evaluated using cross-validation, with particular attention to:
 
 Higher recall ensures that most at-risk customers are identified, even at the cost of some false positives.
 
+## 🧪 Results
+
+The model performance was evaluated across different decision thresholds. The results are summarized below:
+
+| Thresh | Prec_1 | Rec_1 | F1_1 |
+|--------|--------|-------|------|
+| 0.25   | 0.668  | 0.950 | 0.784 |
+| **0.30**   | **0.680**  | **0.937** | **0.788** |
+| 0.35   | 0.692  | 0.900 | 0.783 |
+| 0.40   | 0.708  | 0.889 | 0.788 |
+| 0.45   | 0.725  | 0.820 | 0.769 |
+| 0.50   | 0.746  | 0.738 | 0.742 |
+
+###  Threshold Selection
+
+The threshold **0.3** was chosen as the final operating point due to its strong balance between recall and precision.
+
+At this threshold, the model achieves **very high recall (0.937)** and **moderate precision (0.680)**. This means that while some non-churners may be incorrectly flagged, the model successfully captures most potential churners.
+
+In practice, this choice prioritizes minimizing missed churners, ensuring a low risk of failing to identify customers who are likely to churn.
+
+
 ## 📁 Repository Structure
 
 ### Notebooks
@@ -122,7 +144,7 @@ The repository also includes a prediction pipeline for evaluating or generating 
 
 ```bash
 python scripts/run_predict.py \
-  --model_root ./src/serving/models \
+  --model_root ./src/app/models \
   --experiment-name m-1ed936af9d1748ad9cef4e624c5951b2
 ````
 
@@ -152,7 +174,7 @@ uvicorn app.main:app --reload --port 8000
 Open a **new terminal** and run:
 
 ```bash
-streamlit run app/streamlit_app.py
+streamlit run src/app/streamlit_app.py
 ````
 
 - App will open at:  

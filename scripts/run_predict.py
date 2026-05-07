@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-import mlflow
+import mlflow.sklearn
 import argparse
 from pathlib import Path
 from pydantic import BaseModel, validator
@@ -49,7 +49,7 @@ def main(args):
     print(f"✅ Try to load model")
 
     try:
-        model = mlflow.pyfunc.load_model(model_file)
+        model = mlflow.sklearn.load_model(model_file)
         print(f"✅ Model loaded successfully from {model_file}")
     except Exception as e:
         print(f"❌ Failed to load model from {model_file}: {e}")
@@ -93,8 +93,12 @@ def main(args):
     print("\nValidated DataFrame:")
     print(df)
 
-    preds = model.predict(df)
-    result = preds.tolist()[0]
+    probs = model.predict_proba(df)
+
+    THRESHOLD = 0.35
+    preds = (probs >= THRESHOLD).astype(int)
+    result = preds.tolist()[0][1]
+
 
     from rich.console import Console
 
