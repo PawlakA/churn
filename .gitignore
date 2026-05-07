@@ -13,5 +13,4 @@ __pycache__/
 .ipynb_checkpoints
 
 mlruns/
-artifacts/
 iframe_figures/
