@@ -148,3 +148,6 @@ def test_model_recall_with_custom_threshold(model):
 
     # 7. Assert business requirement
     assert recall >= 0.80, f"Recall too low at threshold {THRESHOLD}: {recall:.3f}"
+
+def test_break_ci():
+    assert 1 == 2
