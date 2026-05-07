@@ -16,7 +16,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install pytest
-        run: pip install pandas numpy pytest mlflow scikit-learn
+        run: pip install pandas numpy pytest scikit-learn mlflow
 
       - name: Run tests
         run: pytest tests/test.py -v
